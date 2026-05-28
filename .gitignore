@@ -1,0 +1,46 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+# Virtual environment
+.venv/
+venv/
+env/
+# Local environment files
+.env
+.env.*
+# Pytest
+.pytest_cache/
+# Logs and runtime data
+logs/
+data/
+backend/data/
+# Database files
+*.sqlite3
+*.db
+# Editor/OS junk
+.vscode/
+.idea/
+.DS_Store
+
+# Frontend / Next.js artifacts
+/frontend/node_modules/
+/frontend/.pnp
+/frontend/.pnp.*
+/frontend/.yarn/*
+!/frontend/.yarn/patches
+!/frontend/.yarn/plugins
+!/frontend/.yarn/releases
+!/frontend/.yarn/versions
+/frontend/.next/
+/frontend/out/
+/frontend/build/
+/frontend/.vercel
+/frontend/*.pem
+/frontend/*.tsbuildinfo
+/frontend/next-env.d.ts
+/frontend/.env*
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
+/frontend/.pnpm-debug.log*
