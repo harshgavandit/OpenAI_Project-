@@ -2,11 +2,12 @@
 import os
 import httpx
 from sqlalchemy.orm import Session
-from app.models.database import User
+from app.models.database import Subscription, User
 
 GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
 GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
 FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:3000")
+FREE_PLAN_STORAGE_LIMIT_MB = int(os.getenv("FREE_PLAN_STORAGE_LIMIT_MB", "500"))
 
 
 class GoogleAuthService:
@@ -115,10 +116,24 @@ class GoogleAuthService:
         google_id: str, email: str, full_name: str, db: Session
     ) -> tuple[User, bool]:
         """Get existing user or create new one (auto-register)"""
+        def ensure_subscription(user: User):
+            subscription = db.query(Subscription).filter(Subscription.user_id == user.id).first()
+            if not subscription:
+                db.add(
+                    Subscription(
+                        user_id=user.id,
+                        plan="free",
+                        status="active",
+                        storage_limit_mb=FREE_PLAN_STORAGE_LIMIT_MB,
+                    )
+                )
+
         # Check if user exists with this Google ID
         user = db.query(User).filter(User.google_id == google_id).first()
 
         if user:
+            ensure_subscription(user)
+            db.commit()
             return user, False
 
         # Check if user exists with this email
@@ -128,6 +143,8 @@ class GoogleAuthService:
             # Existing email user - link Google ID
             user.google_id = google_id
             user.auth_method = "google"
+            user.email_verified = True
+            ensure_subscription(user)
             db.commit()
             return user, False
 
@@ -142,6 +159,8 @@ class GoogleAuthService:
             is_active=True,
         )
         db.add(new_user)
+        db.flush()
+        ensure_subscription(new_user)
         db.commit()
         db.refresh(new_user)
 

@@ -11,7 +11,7 @@ import sqlalchemy as sa
 
 # revision identifiers, used by Alembic.
 revision = '0002_add_sharing_usage'
-down_revision = '0001_initial_saas_schema'
+down_revision = '0001'
 branch_labels = None
 depends_on = None
 
@@ -45,7 +45,7 @@ def upgrade():
         sa.Column('action', sa.String(50), nullable=False),
         sa.Column('resource_type', sa.String(50), nullable=False),
         sa.Column('resource_id', sa.String(500), nullable=True),
-        sa.Column('metadata', sa.JSON(), nullable=False, default=dict),
+        sa.Column('metadata_json', sa.JSON(), nullable=False, default=dict),
         sa.Column('created_at', sa.DateTime(timezone=True), nullable=False),
         sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
         sa.PrimaryKeyConstraint('id'),

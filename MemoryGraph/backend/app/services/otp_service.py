@@ -9,6 +9,16 @@ from app.services.email_service import EmailService
 
 OTP_EXPIRY_MINUTES = int(os.getenv("OTP_EXPIRY_MINUTES", 5))
 OTP_MAX_ATTEMPTS = int(os.getenv("OTP_MAX_ATTEMPTS", 3))
+DEV_LOG_OTP = os.getenv("DEV_LOG_OTP", "true").lower() in {"1", "true", "yes"}
+
+
+def as_utc(dt: datetime | None) -> datetime | None:
+    """Normalize SQLite/Postgres datetimes for safe comparison."""
+    if dt is None:
+        return None
+    if dt.tzinfo is None:
+        return dt.replace(tzinfo=timezone.utc)
+    return dt.astimezone(timezone.utc)
 
 
 class OTPService:
@@ -38,11 +48,19 @@ class OTPService:
             db.commit()
             db.refresh(otp_log)
 
-            # Send email
             email_sent = EmailService.send_otp_email(email, otp_code)
 
             if not email_sent:
-                return {"success": False, "message": "Failed to send OTP email"}
+                if DEV_LOG_OTP:
+                    print(f"[MemoryGraph DEV OTP] {email} -> {otp_code} (expires in {OTP_EXPIRY_MINUTES} min)")
+                    return {
+                        "success": True,
+                        "message": "OTP logged to server console (dev mode — check backend terminal)",
+                        "otp_id": otp_log.id,
+                        "expires_in_minutes": OTP_EXPIRY_MINUTES,
+                        "dev_mode": True,
+                    }
+                return {"success": False, "message": "Failed to send OTP email. Configure GMAIL_EMAIL and GMAIL_APP_PASSWORD."}
 
             return {
                 "success": True,
@@ -58,11 +76,11 @@ class OTPService:
         """Verify OTP code"""
         try:
             now = datetime.now(timezone.utc)
+            normalized_code = "".join(ch for ch in provided_code.strip() if ch.isdigit())
 
-            # Get the latest OTP for this user
             otp_log = (
                 db.query(OTPLog)
-                .filter(OTPLog.user_id == user_id, OTPLog.email == email)
+                .filter(OTPLog.user_id == user_id, OTPLog.email == email.lower())
                 .order_by(OTPLog.created_at.desc())
                 .first()
             )
@@ -70,20 +88,17 @@ class OTPService:
             if not otp_log:
                 return {"success": False, "message": "No OTP found for this email"}
 
-            # Check if expired
-            if now > otp_log.expires_at:
+            expires_at = as_utc(otp_log.expires_at)
+            if expires_at and now > expires_at:
                 return {"success": False, "message": "OTP has expired"}
 
-            # Check if already verified
             if otp_log.verified_at:
                 return {"success": False, "message": "OTP already used"}
 
-            # Check max attempts
             if otp_log.attempts >= OTP_MAX_ATTEMPTS:
                 return {"success": False, "message": "Maximum OTP attempts exceeded"}
 
-            # Check code
-            if provided_code != otp_log.code:
+            if normalized_code != otp_log.code:
                 otp_log.attempts += 1
                 db.commit()
                 remaining = OTP_MAX_ATTEMPTS - otp_log.attempts

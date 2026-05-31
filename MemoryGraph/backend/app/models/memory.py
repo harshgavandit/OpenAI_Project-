@@ -56,6 +56,18 @@ class MemoryStatusResponse(BaseModel):
 class TimeMachineRequest(BaseModel):
     query: str
     birth_year: int | None = None
+    owner_id: str | None = None
+
+
+class MemoryProof(BaseModel):
+    memory_id: str
+    title: str
+    summary: str = ""
+    status: str = "completed"
+    processing_stage: str = "completed"
+    evidence: dict = Field(default_factory=dict)
+    confidence: float = 0.5
+    created_at: str | None = None
 
 
 class TimeMachineResponse(BaseModel):
@@ -68,12 +80,14 @@ class TimeMachineResponse(BaseModel):
     timeline: list[dict] = Field(default_factory=list)
     memories: list[MemoryRecord] = Field(default_factory=list)
     relationships: list[dict[str, str]] = Field(default_factory=list)
+    proofs: list[MemoryProof] = Field(default_factory=list)
 
 
 class ChatResponse(BaseModel):
     answer: str
     sources: list[MemoryRecord] = Field(default_factory=list)
     relationships: list[dict[str, str]] = Field(default_factory=list)
+    proofs: list[MemoryProof] = Field(default_factory=list)
 
 
 class ShareResponse(BaseModel):

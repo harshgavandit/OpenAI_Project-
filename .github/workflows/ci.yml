@@ -1,0 +1,44 @@
+name: MemoryGraph CI
+
+on:
+  push:
+    paths:
+      - 'MemoryGraph/**'
+  pull_request:
+    paths:
+      - 'MemoryGraph/**'
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: MemoryGraph/backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - run: python -m pytest tests/test_saas_flow.py -q
+        env:
+          JWT_SECRET_KEY: ci-test-secret-key-min-32-chars-long
+          DATABASE_URL: sqlite:///./ci_test.db
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: MemoryGraph/frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: MemoryGraph/frontend/package-lock.json
+      - run: npm ci
+      - run: npm run build
+        env:
+          NEXT_PUBLIC_API_URL: /api
+          BACKEND_URL: http://127.0.0.1:8000

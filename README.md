@@ -7,6 +7,7 @@
 | Document | Purpose |
 |----------|---------|
 | 📖 [README_JUDGES.md](README_JUDGES.md) | **START HERE** - Quick demo guide (2 min read) |
+| 🗺️ [TRACK_C_ROADMAP.md](TRACK_C_ROADMAP.md) | Production + standout feature plan (Track C) |
 | ⚡ [QUICK_START_GUIDE.md](QUICK_START_GUIDE.md) | Setup in 5 minutes |
 | ✅ [FEATURE_SUMMARY.md](FEATURE_SUMMARY.md) | Complete feature list |
 | 📋 [HACKATHON_CHECKLIST.md](HACKATHON_CHECKLIST.md) | Submission checklist |
@@ -68,7 +69,7 @@ Status: 🟢 READY FOR DEMO & DEPLOYMENT
 - ✅ Security hardening (input validation)
 
 ### Production Ready ✅
-- ✅ TypeScript (100% typed)
+-  TypeScript (100% typed) 
 - ✅ WCAG AA accessibility
 - ✅ Responsive (mobile to 1440px+)
 - ✅ Fast (1.2s load, 80ms search)

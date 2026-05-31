@@ -41,16 +41,23 @@ class SimpleInMemoryCollection:
         return {"ids": [ids]}
 
 from app.models.memory import MemoryRecord
+from app.services.ai_provider import ai_provider
 
 load_dotenv()
 
 
 class SimpleEmbeddingFunction:
+    fallback_dimensions = 768
+
     def __call__(self, input):
         return [self._embed(text) for text in input]
 
     def _embed(self, text: str):
-        vector = [0.0] * 128
+        ollama_embedding = ai_provider.embed_text(text)
+        if ollama_embedding:
+            return ollama_embedding
+
+        vector = [0.0] * self.fallback_dimensions
         for token in text.lower().split():
             digest = hashlib.sha256(token.encode("utf-8")).digest()
             index = digest[0] % len(vector)
@@ -163,8 +170,11 @@ class StorageService:
         query: str,
         limit: int = 20,
         user_id: str | None = None,
+        terms: list[str] | None = None,
     ) -> list[dict[str, str]]:
-        lowered = query.lower()
+        needles = [t.lower() for t in (terms or []) if t]
+        if not needles:
+            needles = [query.lower()] if query else []
         relationships = []
         for source, target, data in self.graph.edges(data=True):
             source_user = self.graph.nodes[source].get("user_id", "")
@@ -174,7 +184,8 @@ class StorageService:
             source_label = str(source)
             target_label = str(target)
             relation = data.get("relation", "RELATED_TO")
-            if not query or lowered in source_label.lower() or lowered in target_label.lower():
+            haystack = f"{source_label} {target_label} {relation}".lower()
+            if not needles or any(needle in haystack for needle in needles):
                 relationships.append({"source": source_label, "relation": relation, "target": target_label})
             if len(relationships) >= limit:
                 break

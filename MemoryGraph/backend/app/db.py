@@ -41,16 +41,50 @@ def ensure_sqlite_columns():
         return
 
     inspector = inspect(engine)
-    if "memories" not in inspector.get_table_names():
-        return
+    table_names = set(inspector.get_table_names())
 
-    existing = {column["name"] for column in inspector.get_columns("memories")}
-    additions = {
-        "status": "ALTER TABLE memories ADD COLUMN status VARCHAR(50) DEFAULT 'completed' NOT NULL",
-        "processing_stage": "ALTER TABLE memories ADD COLUMN processing_stage VARCHAR(80) DEFAULT 'completed' NOT NULL",
-        "processing_error": "ALTER TABLE memories ADD COLUMN processing_error TEXT",
+    table_additions = {
+        "users": {
+            "email_verified": "ALTER TABLE users ADD COLUMN email_verified BOOLEAN DEFAULT 0 NOT NULL",
+            "google_id": "ALTER TABLE users ADD COLUMN google_id VARCHAR(255)",
+            "auth_method": "ALTER TABLE users ADD COLUMN auth_method VARCHAR(50) DEFAULT 'email' NOT NULL",
+        },
+        "memories": {
+            "status": "ALTER TABLE memories ADD COLUMN status VARCHAR(50) DEFAULT 'completed' NOT NULL",
+            "processing_stage": "ALTER TABLE memories ADD COLUMN processing_stage VARCHAR(80) DEFAULT 'completed' NOT NULL",
+            "processing_error": "ALTER TABLE memories ADD COLUMN processing_error TEXT",
+            "archived_at": "ALTER TABLE memories ADD COLUMN archived_at DATETIME",
+            "deleted_at": "ALTER TABLE memories ADD COLUMN deleted_at DATETIME",
+            "delete_reason": "ALTER TABLE memories ADD COLUMN delete_reason TEXT",
+        },
+        "usage_logs": {
+            "metadata": "ALTER TABLE usage_logs ADD COLUMN metadata JSON DEFAULT '{}' NOT NULL",
+            "metadata_json": "ALTER TABLE usage_logs ADD COLUMN metadata_json JSON DEFAULT '{}' NOT NULL",
+        },
+        "weekly_reports": {
+            "share_token": "ALTER TABLE weekly_reports ADD COLUMN share_token VARCHAR(96)",
+            "is_public": "ALTER TABLE weekly_reports ADD COLUMN is_public BOOLEAN DEFAULT 0 NOT NULL",
+        },
+        "storybooks": {
+            "share_token": "ALTER TABLE storybooks ADD COLUMN share_token VARCHAR(96)",
+        },
+        "memory_capsules": {
+            "unlock_notified": "ALTER TABLE memory_capsules ADD COLUMN unlock_notified BOOLEAN DEFAULT 0 NOT NULL",
+        },
+        "family_rituals": {
+            "responses_json": "ALTER TABLE family_rituals ADD COLUMN responses_json JSON DEFAULT '[]' NOT NULL",
+        },
+        "sessions": {
+            "refresh_token": "ALTER TABLE sessions ADD COLUMN refresh_token VARCHAR(255)",
+            "refresh_expires_at": "ALTER TABLE sessions ADD COLUMN refresh_expires_at DATETIME",
+        },
     }
+
     with engine.begin() as connection:
-        for column, statement in additions.items():
-            if column not in existing:
-                connection.execute(text(statement))
+        for table_name, additions in table_additions.items():
+            if table_name not in table_names:
+                continue
+            existing = {column["name"] for column in inspector.get_columns(table_name)}
+            for column, statement in additions.items():
+                if column not in existing:
+                    connection.execute(text(statement))

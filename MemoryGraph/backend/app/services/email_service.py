@@ -68,6 +68,8 @@ class EmailService:
     @staticmethod
     def _send_email(to_email: str, subject: str, html_body: str) -> bool:
         """Internal method to send email via Gmail SMTP"""
+        if not GMAIL_EMAIL or not GMAIL_APP_PASSWORD:
+            return False
         try:
             msg = MIMEMultipart("alternative")
             msg["Subject"] = subject
@@ -83,4 +85,41 @@ class EmailService:
             return True
         except Exception as e:
             print(f"Failed to send email: {e}")
+            return False
+
+    @staticmethod
+    def send_capsule_unlocked_email(to_email: str, recipient_name: str, capsule_title: str, share_link: str) -> bool:
+        try:
+            subject = f"MemoryGraph: Your capsule “{capsule_title}” is ready"
+            html_body = f"""
+            <html><body style="font-family: Georgia, serif; padding: 24px;">
+              <h2>A memory capsule has opened</h2>
+              <p>Hello {recipient_name or 'friend'},</p>
+              <p>The capsule <strong>{capsule_title}</strong> is now unlocked and ready to read.</p>
+              <p><a href="{share_link}" style="background:#0f172a;color:#fff;padding:12px 20px;text-decoration:none;border-radius:8px;">Open capsule</a></p>
+              <p style="color:#666;font-size:12px;">Sent by MemoryGraph — private family memory OS.</p>
+            </body></html>
+            """
+            return EmailService._send_email(to_email, subject, html_body)
+        except Exception as e:
+            print(f"Failed to send capsule email: {e}")
+            return False
+
+    @staticmethod
+    def send_ritual_questions_email(to_email: str, ritual_title: str, questions: list[str], frontend_url: str) -> bool:
+        try:
+            items = "".join(f"<li style='margin:8px 0;'>{q}</li>" for q in questions[:5])
+            subject = f"MemoryGraph Family Ritual: {ritual_title}"
+            html_body = f"""
+            <html><body style="font-family: Arial, sans-serif; padding: 24px;">
+              <h2>{ritual_title}</h2>
+              <p>Your family memory ritual questions for this week:</p>
+              <ol>{items}</ol>
+              <p>Answer in MemoryGraph Studio — responses become new indexed memories.</p>
+              <p><a href="{frontend_url}/family-rituals">Open rituals</a></p>
+            </body></html>
+            """
+            return EmailService._send_email(to_email, subject, html_body)
+        except Exception as e:
+            print(f"Failed to send ritual email: {e}")
             return False
