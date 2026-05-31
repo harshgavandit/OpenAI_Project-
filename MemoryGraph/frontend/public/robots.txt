@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /studio
+Disallow: /ask
+Disallow: /memory
+Disallow: /auth/
+
+Sitemap: https://memorygraph.ai/sitemap.xml

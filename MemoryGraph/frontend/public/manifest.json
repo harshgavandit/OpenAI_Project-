@@ -1,0 +1,16 @@
+{
+  "name": "MemoryGraph",
+  "short_name": "MemoryGraph",
+  "description": "Family memories with sources you can trust",
+  "start_url": "/studio",
+  "display": "standalone",
+  "background_color": "#f6f0df",
+  "theme_color": "#d97706",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}
