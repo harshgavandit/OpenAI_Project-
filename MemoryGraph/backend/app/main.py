@@ -10,6 +10,7 @@ from app.api.platform_routes import platform_router
 
 app = FastAPI(title="MemoryGraph AI API")
 
+# Core FastAPI application configuration
 # Configure CORS for local dev + production
 allowed_origins = [
     "http://localhost:3000",
