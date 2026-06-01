@@ -804,13 +804,9 @@ http://localhost:3000
 
 ## 🎓 Documentation
 
-- 📖 [README_JUDGES.md](README_JUDGES.md) - Quick start
-- ⚡ [QUICK_START_GUIDE.md](QUICK_START_GUIDE.md) - 5-minute setup
-- ✅ [FEATURE_SUMMARY.md](FEATURE_SUMMARY.md) - All features
-- 📋 [HACKATHON_CHECKLIST.md](HACKATHON_CHECKLIST.md) - Checklist
-- 📊 [IMPLEMENTATION_REPORT.md](IMPLEMENTATION_REPORT.md) - Technical
-- 🚀 [DEPLOYMENT_GUIDE.md](MemoryGraph/DEPLOYMENT_GUIDE.md) - Deploy
-- 🎊 [PROJECT_COMPLETION_SUMMARY.md](PROJECT_COMPLETION_SUMMARY.md) - Summary
+- 📖 [HACKATHON_DEMO_SCRIPT.md](MemoryGraph/docs/HACKATHON_DEMO_SCRIPT.md) - Demo walkthrough
+- 🚀 [DEPLOY.md](MemoryGraph/docs/DEPLOY.md) - Deployment guide
+- ✅ [PRODUCTION_CHECKLIST.md](MemoryGraph/docs/PRODUCTION_CHECKLIST.md) - Production readiness checklist
 
 ---
 
