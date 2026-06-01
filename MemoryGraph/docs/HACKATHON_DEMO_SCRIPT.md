@@ -6,4 +6,6 @@
 4. **Share** (20s) — Open **Share a life story** public link in new tab.
 5. **Close** (10s) — “Private, source-backed, built for families — runs on free infrastructure.”
 
+> Tip: keep the demo focused on the family graph, Ask sources, and Stories builder.
+
 Do not open Settings labs or debug banner.
