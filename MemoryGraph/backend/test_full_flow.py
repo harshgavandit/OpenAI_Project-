@@ -1,3 +1,4 @@
+# Updated by GitHub contribution automation.
 """
 Simulate the full auth flow:
 1. Create a token in the running uvicorn server
