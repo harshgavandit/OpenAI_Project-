@@ -1,3 +1,4 @@
+# Updated by GitHub contribution automation.
 """Single payload for authenticated app bootstrap."""
 
 from sqlalchemy.orm import Session
