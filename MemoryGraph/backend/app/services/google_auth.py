@@ -1,3 +1,4 @@
+# Updated by GitHub contribution automation.
 """Google OAuth service for authentication"""
 import os
 import httpx
