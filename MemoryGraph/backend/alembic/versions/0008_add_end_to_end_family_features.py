@@ -1,3 +1,4 @@
+# Updated by GitHub contribution automation.
 """Add end-to-end family platform feature tables
 
 Revision ID: 0008_add_end_to_end_family_features
