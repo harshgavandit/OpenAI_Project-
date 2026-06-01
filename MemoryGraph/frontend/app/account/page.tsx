@@ -1,4 +1,5 @@
 'use client';
+// Updated by GitHub contribution automation.
 
 import { AppShell } from '@/app/components/AppShell';
 import { useAuth } from '@/app/context/AuthContext';
