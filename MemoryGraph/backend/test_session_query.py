@@ -1,3 +1,4 @@
+# Updated by GitHub contribution automation.
 from app.db import SessionLocal
 from app.models.database import Session as SessionModel, User
 
