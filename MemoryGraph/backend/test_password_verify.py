@@ -1,3 +1,4 @@
+# Updated by GitHub contribution automation.
 from app.db import SessionLocal
 from app.models.database import User
 from app.services.auth import auth_service
