@@ -1,4 +1,8 @@
-"""Platform endpoints: bootstrap, account utilities, streaming chat."""
+"""Platform endpoints: bootstrap, account utilities, streaming chat.
+
+This module defines routes for archive bootstrapping, uploads, referrals, notifications,
+and platform-specific utilities used by the frontend.
+"""
 
 import json
 from datetime import datetime, timezone
