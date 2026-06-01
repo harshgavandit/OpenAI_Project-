@@ -61,3 +61,5 @@ OLLAMA_BASE_URL=http://localhost:11434
 - Render Free: $0 (cold starts ~30s)
 - Neon Postgres: $0 tier optional
 - **No Stripe, no paid AI APIs required**
+
+> Note: Updated by GitHub contribution automation.
