@@ -1,3 +1,4 @@
+# Updated by GitHub contribution automation.
 """Stripe billing integration (optional — requires STRIPE_SECRET_KEY)."""
 
 import os
