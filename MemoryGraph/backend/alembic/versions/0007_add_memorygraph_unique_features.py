@@ -1,3 +1,4 @@
+# Updated by GitHub contribution automation.
 """Add MemoryGraph unique feature tables
 
 Revision ID: 0007_add_memorygraph_unique_features
