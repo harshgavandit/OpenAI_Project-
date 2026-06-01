@@ -1,3 +1,4 @@
+# Updated by GitHub contribution automation.
 """Simple referral codes tracked via usage logs (no extra migration)."""
 
 from fastapi import HTTPException
