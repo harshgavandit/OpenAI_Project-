@@ -1,3 +1,4 @@
+# Updated by GitHub contribution automation.
 """Full sample archive: memories plus family artifacts for a rich first-run experience."""
 
 from __future__ import annotations
