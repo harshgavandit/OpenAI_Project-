@@ -1,3 +1,4 @@
+// Updated by GitHub contribution automation.
 /**
  * Sharing modal component for the frontend
  * Allows users to create and manage shareable links
