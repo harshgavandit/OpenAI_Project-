@@ -1,3 +1,4 @@
+# Updated by GitHub contribution automation.
 """Add auth fields to users table
 
 Revision ID: 0003_add_auth_fields
