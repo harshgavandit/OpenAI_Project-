@@ -802,14 +802,6 @@ http://localhost:3000
 
 ---
 
-## 🎓 Documentation
-
-- 📖 [HACKATHON_DEMO_SCRIPT.md](MemoryGraph/docs/HACKATHON_DEMO_SCRIPT.md) - Demo walkthrough
-- 🚀 [DEPLOY.md](MemoryGraph/docs/DEPLOY.md) - Deployment guide
-- ✅ [PRODUCTION_CHECKLIST.md](MemoryGraph/docs/PRODUCTION_CHECKLIST.md) - Production readiness checklist
-
----
-
 ## 🔐 Security Features
 
 ✅ Input validation (email, password)

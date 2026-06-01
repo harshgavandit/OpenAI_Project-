@@ -13,10 +13,11 @@
 
 ### Frontend (`MemoryGraph/frontend/.env`)
 
-- `NEXT_PUBLIC_API_URL=/api` (same-origin proxy)
-- `BACKEND_URL` — internal API URL for Next.js rewrites
+- `NEXT_PUBLIC_API_URL=/api` — same-origin proxy to backend
+- `BACKEND_URL` — internal API URL used by `next.config.ts` rewrites
 - `NEXT_PUBLIC_SITE_URL` — public site URL
 - `NEXT_PUBLIC_GOOGLE_CLIENT_ID` — register `http://localhost:3000` and production URL in Google Cloud Console
+- `SESSION_COOKIE_SECURE=true` — enforce secure cookies in production
 
 ## Before Launch
 

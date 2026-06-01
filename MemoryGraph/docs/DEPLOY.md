@@ -28,7 +28,7 @@ cd MemoryGraph/backend && alembic upgrade head
 
 | Variable | Value |
 |----------|--------|
-| `BACKEND_URL` | `https://memorygraph-api.onrender.com` |
+| `BACKEND_URL` | Your Render API URL, e.g. `https://memorygraph-api.onrender.com` |
 | `NEXT_PUBLIC_API_URL` | `/api` |
 | `NEXT_PUBLIC_SITE_URL` | `https://your-app.vercel.app` |
 | `NEXT_PUBLIC_GOOGLE_CLIENT_ID` | (optional) |

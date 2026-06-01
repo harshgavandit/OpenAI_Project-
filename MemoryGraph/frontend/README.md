@@ -9,6 +9,7 @@ This folder contains the Next.js frontend for the MemoryGraph application.
 - `npm run build` — builds the production app
 - `npm run start` — starts the production server after build
 - `npm run lint` — runs ESLint
+- `npm run lint:fix` — fixes lint issues automatically
 - `npm run test:e2e` — runs Playwright end-to-end tests
 
 ## Local Development
