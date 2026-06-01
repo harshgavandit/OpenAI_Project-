@@ -1,1 +1,2 @@
+"""MemoryGraph API package initializer."""
 
