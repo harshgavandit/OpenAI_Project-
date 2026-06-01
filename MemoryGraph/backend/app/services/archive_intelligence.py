@@ -1,3 +1,4 @@
+# Updated by GitHub contribution automation.
 """Detect timeline gaps and date contradictions in a family archive."""
 
 from __future__ import annotations
