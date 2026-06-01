@@ -1,3 +1,4 @@
+# Updated by GitHub contribution automation.
 """Add family platform feature tables
 
 Revision ID: 0006_add_family_platform_features
