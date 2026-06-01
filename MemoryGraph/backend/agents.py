@@ -1,3 +1,4 @@
+# Updated by GitHub contribution automation.
 """Lightweight agents package for MemoryGraph backend.
 Includes: ExtractionAgent, SearchAgent, InsightsAgent, ChatAgent, TimelineAgent and AgentManager.
 """
