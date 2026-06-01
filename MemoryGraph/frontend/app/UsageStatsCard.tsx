@@ -1,3 +1,4 @@
+// Updated by GitHub contribution automation.
 /**
  * Usage stats component
  * Shows user's current usage vs. plan limits
