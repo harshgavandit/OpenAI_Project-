@@ -1,3 +1,4 @@
+# Updated by GitHub contribution automation.
 """Phase 3 auth cookies + phase 4 family/archive features
 
 Revision ID: 0010_phase3_auth_phase4
