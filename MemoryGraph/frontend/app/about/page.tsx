@@ -1,3 +1,4 @@
+// Updated by GitHub contribution automation.
 import { MarketingCTA, MarketingPage, SectionEyebrow } from '@/app/components/MarketingChrome';
 import Link from 'next/link';
 
