@@ -9,6 +9,7 @@ from sqlalchemy.orm import DeclarativeBase, sessionmaker
 load_dotenv()
 
 BACKEND_DIR = Path(__file__).resolve().parents[1]
+# Default local database file when DATABASE_URL is not provided.
 DEFAULT_DATABASE_URL = f"sqlite:///{BACKEND_DIR / 'data' / 'memorygraph.db'}"
 DATABASE_URL = os.getenv("DATABASE_URL", DEFAULT_DATABASE_URL)
 
