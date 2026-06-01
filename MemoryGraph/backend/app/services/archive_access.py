@@ -1,3 +1,4 @@
+# Updated by GitHub contribution automation.
 """Family archive sharing: contributor access checks."""
 
 from fastapi import HTTPException
