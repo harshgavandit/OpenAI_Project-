@@ -1,3 +1,4 @@
+# Updated by GitHub contribution automation.
 """OTP generation and verification service"""
 import os
 import random
