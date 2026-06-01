@@ -1,3 +1,4 @@
+# Updated by GitHub contribution automation.
 """Platform endpoints: bootstrap, account utilities, streaming chat.
 
 This module defines routes for archive bootstrapping, uploads, referrals, notifications,
