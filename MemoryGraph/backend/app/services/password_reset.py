@@ -1,3 +1,4 @@
+# Updated by GitHub contribution automation.
 """Password reset via email OTP."""
 
 from sqlalchemy.orm import Session
