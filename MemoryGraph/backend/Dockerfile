@@ -13,8 +13,10 @@ COPY . .
 
 RUN mkdir -p /app/data/chromadb /app/data/uploads
 
+# Ensure Python output is not buffered in Docker logs
 ENV PYTHONUNBUFFERED=1
 ENV PORT=8000
+# Default local LLM provider for demo mode
 ENV LLM_PROVIDER=fallback
 ENV DATABASE_URL=sqlite:///./data/memorygraph.db
 ENV CHROMA_DB_PATH=./data/chromadb
