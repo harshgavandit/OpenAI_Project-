@@ -1,5 +1,6 @@
 name: MemoryGraph CI
 
+# Continuous integration workflow for backend and frontend validation
 on:
   push:
     paths:
