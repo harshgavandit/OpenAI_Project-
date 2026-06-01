@@ -1,3 +1,4 @@
+# Updated by GitHub contribution automation.
 """Memory Proof — cite every AI insight back to source memories."""
 
 from __future__ import annotations
