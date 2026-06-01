@@ -49,3 +49,5 @@ http://localhost:3000
 - The main app entry is `app/page.tsx`.
 - This repository uses `next dev --webpack` by default, with an optional `dev:turbo` mode.
 - Use `npm run build` before deploying or running the production server.
+
+> Note: Updated by GitHub contribution automation.
