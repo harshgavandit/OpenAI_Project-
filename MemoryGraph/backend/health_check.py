@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# Updated by GitHub contribution automation.
 """
 Quick health check for MemoryGraph
 Verifies backend is ready
