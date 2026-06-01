@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# Updated by GitHub contribution automation.
 """
 Complete setup: Initialize DB, create user, load demo data
 """
