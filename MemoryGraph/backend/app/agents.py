@@ -1,3 +1,4 @@
+# Updated by GitHub contribution automation.
 from abc import ABC, abstractmethod
 from pydantic import BaseModel
 from typing import Any, Dict, Optional
