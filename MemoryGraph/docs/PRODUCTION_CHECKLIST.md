@@ -50,3 +50,5 @@ In [Google Cloud Console](https://console.cloud.google.com/) → Credentials →
 3. Search `grandfather` at `/search`
 4. Ask on `/ask` with source proofs
 5. Open Library `/memories` and Processing `/processing`
+
+> Note: Updated by GitHub contribution automation.
