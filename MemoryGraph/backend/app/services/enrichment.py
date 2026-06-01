@@ -1,3 +1,4 @@
+# Updated by GitHub contribution automation.
 from app.models.memory import StructuredMemory
 from app.services.ai_provider import ai_provider
 
