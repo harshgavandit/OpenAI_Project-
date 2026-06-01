@@ -9,3 +9,5 @@
 > Tip: keep the demo focused on the family graph, Ask sources, and Stories builder.
 
 Do not open Settings labs or debug banner.
+
+> Note: Updated by GitHub contribution automation.
