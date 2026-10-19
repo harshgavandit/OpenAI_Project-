@@ -21,4 +21,4 @@ pytest==8.3.4
 httpx==0.24.0
 reportlab==4.0.7
 
-> Note: Updated by GitHub contribution automation.
+# Note: Updated by GitHub contribution automation.
